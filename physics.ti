@@ -1,0 +1,198 @@
+let energy = $e
+let mass = $m
+let velocity = $v
+let force = $f
+let x = $x
+let theta = $θ
+let work = $w
+let potential = $u
+let gravity = $g
+let height = $h
+let ms2 = " m/s²"
+let exit = { goto exit }
+
+var back = [0]
+backupVars(back)
+clrHome()
+println("","","Physics V2.1")
+pause()
+clrHome()
+
+label mainMenu:
+  menu("Physics",
+  "motion", motion,
+  "force", force,
+  "energy", energy,
+  "collisions", collisions,
+  "sound", sound,
+  "page 2", page2,
+  "exit", exit)
+
+label page2:
+  menu("PHYSICS 2",
+  "STATIC",static,
+  "CIRCULAR MOTION",circularMotion,
+  "NUCLEAR",nuclear,
+  "BACK",mainMenu,
+  "EXIT",exit)
+
+label motion:
+
+label force:
+
+label energy:
+  menu("ENERGY"
+  ,"E=.5MV²",kinetic
+  ,"U=MGH",gravitational
+  ,"W=FXcos(θ)",workDotProduct
+  ,"G-Ho",gho
+  ,"BACK",mainMenu
+  ,"EXIT",exit)
+
+label gravitational:
+  menu("FIND",
+  "U",gravPotential,
+  "M",gravMass,
+  "G",gravG,
+  "H",gravH,
+  "BACK",energy,
+  "EXIT",exit)
+
+label gravPotential:
+  rPrompt(mass, gravity, height)
+  mass * gravity * height -> potential
+  print("u=",potential," J")
+  exit
+
+label gravMass:
+  rPrompt(potential, gravity, height)
+  potential / (gravity * height) -> mass
+  print("m=", mass, " kg")
+  exit
+
+label gravG:
+  rPrompt(potential, mass, height)
+  potential / (mass * height) -> gravity
+  print("g=", gravity, ms2)
+  exit
+
+label gravH:
+  rPrompt(potential, mass, gravity)
+  potential / (mass * gravity) -> height
+  print("h=", height, " m")
+  exit
+
+label workDotProduct:
+  menu("FIND",
+  "W",workFind,
+  "F",workFindForce,
+  "X",workFindX,
+  "θ",workFindTheta,
+  "BACK",energy,
+  "EXIT",exit)
+
+label workFind:
+  rPrompt(force, x, theta)
+  force * x * cos(theta) -> work
+  print("w=", work, " Nm")
+  exit
+
+label workFindForce:
+  rPrompt(work, x, theta)
+  work / (x * cos(theta)) -> force
+  print("f=", force, " N")
+  exit
+
+label workFindX:
+  rPrompt(work, force, theta)
+  work / (force * cos(theta)) -> x
+  print("x=", x, " m")
+  exit
+
+label workFindTheta:
+  rPrompt(work, force, x)
+  acos(work / (force * x)) -> theta
+  print("θ=", theta, " deg")
+  exit
+
+label gho:
+  let h_i = $h
+  let h_f = $l
+  let v_i = $i
+  let v_f = $f
+  menu("FIND",
+  "H Initial (H)",ghoHI,
+  "H Final (L)",ghoHF,
+  "V Initial (I)",ghoVI,
+  "V Final (F)",ghoVF,
+  "BACK",energy,
+  "EXIT",exit)
+
+label ghoHI:
+  rPrompt(h_f, v_i, v_f)
+  (9.8*h_f)+(.5*(v_f^2))-(.5*(v_i^2)) -> height
+  print("Height Initial=")
+  print(height, " m")
+  exit
+
+label ghoHF:
+  rPrompt(h_i, v_i, v_f)
+  (9.8*h_i)+(.5*(v_i^2))-(.5*(v_f^2)) -> height
+  print("Height Final=")
+  print(height, " m")
+  exit
+
+label ghoVI:
+  rPrompt(h_i, h_f, v_f)
+  (9.8*h_f)+(.5*(v_f^2))-(9.8*h_i) -> velocity
+  print("Velocity Initial=")
+  print(velocity, " m/s")
+  exit
+
+label ghoVF:
+  rPrompt(h_i, h_f, v_i)
+  (9.8*h_i)+(.5*(v_i^2))-(9.8*h_f) -> velocity
+  print("Velocity Final=")
+  print(velocity, " m/s")
+  exit
+
+label kinetic:
+  menu("FIND",
+  "E",kineticFindEnergy,
+  "M",kineticFindMass,
+  "V",kineticFindVelocity,
+  "BACK",energy,
+  "EXIT",exit)
+
+label kineticFindVelocity:
+  rPrompt(energy, mass)
+  sqrt(2 * energy / mass) -> velocity
+  print("V=",velocity," m/s")
+  exit
+
+label kineticFindMass:
+  rPrompt(energy, velocity)
+  2 * energy / (velocity ^ 2) -> mass
+  print("m=", mass, " kg")
+  exit
+
+label kineticFindEnergy:
+  rPrompt(mass, velocity)
+  .5 * mass * velocity ^ 2 -> energy
+  print("e=", energy, " J")
+  exit
+
+label collisions:
+
+label sound:
+
+label static:
+
+label circularMotion:
+
+label nuclear:
+
+label exit:
+  restoreVars(back)
+  delVar(back)
+  stop()

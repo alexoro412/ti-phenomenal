@@ -1,0 +1,45 @@
+let ideal = $i
+let error = $e
+let actual = $a
+let calcError = {
+  (actual - ideal) / ideal
+}
+var back = []
+let e02q = {
+  output(10,1,"enter 0 to quit")
+}
+[ideal, error, actual] -> back
+
+label enterIdeal:
+  clrHome()
+  println("percent error calculator", "", "enter ideal value")
+  e02q
+  rPrompt(ideal)
+  if(eq(ideal,0)){
+    goto cleanup
+  }
+
+label enterActual:
+  clrHome()
+  e02q
+  print("IDEAL: ",ideal," (I)")
+  println("","enter actual")
+  rPrompt(actual)
+  if(neq(actual, 0)){
+    error <- calcError
+    print("")
+    print("ERROR: ", error * 100)
+    output(10,1,"press enter to continue")
+    pause()
+    goto enterActual
+  } else {
+    clrHome()
+    goto enterIdeal
+  }
+
+label cleanup:
+numAt(back, 1) -> ideal
+numAt(back, 2) -> error
+numAt(back, 3) -> actual
+delVar(back)
+stop()

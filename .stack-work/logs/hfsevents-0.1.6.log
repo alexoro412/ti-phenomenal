@@ -1,0 +1,129 @@
+Configuring hfsevents-0.1.6...
+Building hfsevents-0.1.6...
+Preprocessing library hfsevents-0.1.6...
+[1 of 1] Compiling System.OSX.FSEvents ( System/OSX/FSEvents.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/System/OSX/FSEvents.o )
+
+cbits/c_fsevents.m:106:4: error:
+     warning: 'Gestalt' is deprecated: first deprecated in macOS 10.8 [-Wdeprecated-declarations]
+       Gestalt(gestaltSystemVersionMajor, majorVersion);
+       ^
+
+/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Gestalt.h:123:1: error:
+     note: 'Gestalt' has been explicitly marked deprecated here
+Gestalt(
+^
+
+cbits/c_fsevents.m:106:12: error:
+     warning: 'gestaltSystemVersionMajor' is deprecated: first deprecated in macOS 10.8 - Use NSProcessInfo's operatingSystemVersion property instead. [-Wdeprecated-declarations]
+       Gestalt(gestaltSystemVersionMajor, majorVersion);
+               ^
+
+/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Gestalt.h:2075:1: error:
+     note: '' has been explicitly marked deprecated here
+enum {
+^
+
+cbits/c_fsevents.m:107:4: error:
+     warning: 'Gestalt' is deprecated: first deprecated in macOS 10.8 [-Wdeprecated-declarations]
+       Gestalt(gestaltSystemVersionMinor, minorVersion);
+       ^
+
+/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Gestalt.h:123:1: error:
+     note: 'Gestalt' has been explicitly marked deprecated here
+Gestalt(
+^
+
+cbits/c_fsevents.m:107:12: error:
+     warning: 'gestaltSystemVersionMinor' is deprecated: first deprecated in macOS 10.8 - Use NSProcessInfo's operatingSystemVersion property instead. [-Wdeprecated-declarations]
+       Gestalt(gestaltSystemVersionMinor, minorVersion);
+               ^
+
+/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Gestalt.h:2075:1: error:
+     note: '' has been explicitly marked deprecated here
+enum {
+^
+
+cbits/c_fsevents.m:108:4: error:
+     warning: 'Gestalt' is deprecated: first deprecated in macOS 10.8 [-Wdeprecated-declarations]
+       Gestalt(gestaltSystemVersionBugFix, bugFixVersion);
+       ^
+
+/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Gestalt.h:123:1: error:
+     note: 'Gestalt' has been explicitly marked deprecated here
+Gestalt(
+^
+
+cbits/c_fsevents.m:108:12: error:
+     warning: 'gestaltSystemVersionBugFix' is deprecated: first deprecated in macOS 10.8 - Use NSProcessInfo's operatingSystemVersion property instead. [-Wdeprecated-declarations]
+       Gestalt(gestaltSystemVersionBugFix, bugFixVersion);
+               ^
+
+/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Gestalt.h:2075:1: error:
+     note: '' has been explicitly marked deprecated here
+enum {
+^
+6 warnings generated.
+
+cbits/c_fsevents.m:106:4: error:
+     warning: 'Gestalt' is deprecated: first deprecated in macOS 10.8 [-Wdeprecated-declarations]
+       Gestalt(gestaltSystemVersionMajor, majorVersion);
+       ^
+
+/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Gestalt.h:123:1: error:
+     note: 'Gestalt' has been explicitly marked deprecated here
+Gestalt(
+^
+
+cbits/c_fsevents.m:106:12: error:
+     warning: 'gestaltSystemVersionMajor' is deprecated: first deprecated in macOS 10.8 - Use NSProcessInfo's operatingSystemVersion property instead. [-Wdeprecated-declarations]
+       Gestalt(gestaltSystemVersionMajor, majorVersion);
+               ^
+
+/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Gestalt.h:2075:1: error:
+     note: '' has been explicitly marked deprecated here
+enum {
+^
+
+cbits/c_fsevents.m:107:4: error:
+     warning: 'Gestalt' is deprecated: first deprecated in macOS 10.8 [-Wdeprecated-declarations]
+       Gestalt(gestaltSystemVersionMinor, minorVersion);
+       ^
+
+/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Gestalt.h:123:1: error:
+     note: 'Gestalt' has been explicitly marked deprecated here
+Gestalt(
+^
+
+cbits/c_fsevents.m:107:12: error:
+     warning: 'gestaltSystemVersionMinor' is deprecated: first deprecated in macOS 10.8 - Use NSProcessInfo's operatingSystemVersion property instead. [-Wdeprecated-declarations]
+       Gestalt(gestaltSystemVersionMinor, minorVersion);
+               ^
+
+/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Gestalt.h:2075:1: error:
+     note: '' has been explicitly marked deprecated here
+enum {
+^
+
+cbits/c_fsevents.m:108:4: error:
+     warning: 'Gestalt' is deprecated: first deprecated in macOS 10.8 [-Wdeprecated-declarations]
+       Gestalt(gestaltSystemVersionBugFix, bugFixVersion);
+       ^
+
+/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Gestalt.h:123:1: error:
+     note: 'Gestalt' has been explicitly marked deprecated here
+Gestalt(
+^
+
+cbits/c_fsevents.m:108:12: error:
+     warning: 'gestaltSystemVersionBugFix' is deprecated: first deprecated in macOS 10.8 - Use NSProcessInfo's operatingSystemVersion property instead. [-Wdeprecated-declarations]
+       Gestalt(gestaltSystemVersionBugFix, bugFixVersion);
+               ^
+
+/System/Library/Frameworks/CoreServices.framework/Frameworks/CarbonCore.framework/Headers/Gestalt.h:2075:1: error:
+     note: '' has been explicitly marked deprecated here
+enum {
+^
+6 warnings generated.
+Installing library in
+/Users/alexoro/.stack/snapshots/x86_64-osx/lts-9.12/8.0.2/lib/x86_64-osx-ghc-8.0.2/hfsevents-0.1.6-9iAu2avYzh81a5cXhjWwEh
+Registering hfsevents-0.1.6...

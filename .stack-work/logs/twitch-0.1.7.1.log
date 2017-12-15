@@ -1,0 +1,13 @@
+Configuring twitch-0.1.7.1...
+Building twitch-0.1.7.1...
+Preprocessing library twitch-0.1.7.1...
+[1 of 7] Compiling Twitch.Rule      ( src/Twitch/Rule.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Twitch/Rule.o )
+[2 of 7] Compiling Twitch.Path      ( src/Twitch/Path.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Twitch/Path.o )
+[3 of 7] Compiling Twitch.InternalRule ( src/Twitch/InternalRule.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Twitch/InternalRule.o )
+[4 of 7] Compiling Twitch.Internal  ( src/Twitch/Internal.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Twitch/Internal.o )
+[5 of 7] Compiling Twitch.Run       ( src/Twitch/Run.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Twitch/Run.o )
+[6 of 7] Compiling Twitch.Main      ( src/Twitch/Main.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Twitch/Main.o )
+[7 of 7] Compiling Twitch           ( src/Twitch.hs, .stack-work/dist/x86_64-osx/Cabal-1.24.2.0/build/Twitch.o )
+Installing library in
+/Users/alexoro/static/haskell/TIPhen/simple/.stack-work/install/x86_64-osx/lts-9.12/8.0.2/lib/x86_64-osx-ghc-8.0.2/twitch-0.1.7.1-1iK0fyGhzij8SYd6Djy7yL
+Registering twitch-0.1.7.1...
