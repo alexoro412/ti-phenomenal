@@ -2,7 +2,7 @@ module TIParser (Expr(..), tiParse) where
 
 import Text.Parsec
 import Text.Parsec.String
-import Control.Applicative hiding ((<|>), optional, many)
+import Control.Applicative hiding ((<|>), many)
 import Data.Char (toUpper)
 
 type Name = String
