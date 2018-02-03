@@ -2,8 +2,9 @@ module TIParser (Expr(..), tiParse) where
 
 import Text.Parsec
 import Text.Parsec.String
-import Control.Applicative hiding ((<|>), many)
+import Control.Applicative()
 import Data.Char (toUpper)
+import Data.Maybe (fromMaybe)
 
 type Name = String
 
@@ -26,19 +27,27 @@ data Expr = Label Name
   | RawLabel Name deriving Show
 
 
+expr :: Parser Expr
 expr = goto <||> ifParser <||> forwardStore <||> backwardStore <||> letParser <||> varBindParser <||> exprNotStore
 
+exprNotStore :: Parser Expr 
 exprNotStore = labelParser <||> listLitParser <||> fcall <||> str <||> block <||> math <||> nat <||> raw <||> var {-<||> fcall-} <||> dynVar
 
+storage :: Parser Expr 
 storage = raw <||> var <||> fcall <||> dynVar
+
+mathable :: Parser Expr 
 mathable = listLitParser <||> fcall <||> nat <||> storage
+
+storeable :: Parser Expr
 storeable = str <||> math <||> mathable
 
 -- newline :: Parser Char
 -- newline = char '\n'
 
 listLitParser :: Parser Expr
-listLitParser = between (char '[') (char ']') (mathable `sepBy` (spaces *> char ',' <* spaces)) >>= return . ListLit
+listLitParser = ListLit <$> between (char '[') (char ']') (mathable `sepBy` (spaces *> char ',' <* spaces))
+  --between (char '[') (char ']') (mathable `sepBy` (spaces *> char ',' <* spaces)) >>= return . ListLit
 
 ifParser :: Parser Expr
 ifParser = do
@@ -46,9 +55,10 @@ ifParser = do
   cond <- between (char '(') (char ')') storeable <* spaces
   ifBody <- block <* spaces
   mElseBody <- optionMaybe $ string "else" *> spaces *> (block <||> ifParser)
-  return . If cond ifBody $ case mElseBody of
-    Just elseBody -> elseBody
-    Nothing -> Raw ""
+  return . If cond ifBody $ fromMaybe (Raw "") mElseBody
+  -- case mElseBody of
+    -- Just elseBody -> elseBody
+    -- Nothing -> Raw ""
 
 
 -- examples
@@ -59,17 +69,18 @@ goto = do
   return $ Goto c
 
 str :: Parser Expr
-str = between (char '"') (char '"') (many (noneOf "\"")) >>= return . Str . (map toUpper)
+str = (Str . map toUpper) <$> between (char '"') (char '"') (many (noneOf "\""))
 
 block :: Parser Expr
-block = between (char '{') (char '}') (many1 ((many $ oneOf "\n ") *> expr <* (many $ oneOf "\n "))) >>= return . Block
+block = Block <$> between (char '{') (char '}') (many1 (many (oneOf "\n ") *> expr <* many (oneOf "\n ")))
 
 -- TODO verify actually math expression
 math :: Parser Expr
 math = do
-  c <- many1 (((between (char '(') (char ')') math) ) <||> mathable <||> try (spaces *> mathop <* spaces))
+  c <- many1 (between (char '(') (char ')') math <||> mathable <||> try (spaces *> mathop <* spaces))
   if length c <= 1 then fail "not math" else return $ Math c
 
+validMathOps :: String
 validMathOps = "+*/-^<>="
 
 mathop :: Parser Expr
@@ -105,9 +116,9 @@ fcall = do
 dynVar :: Parser Expr
 dynVar = do
   c <- letter
-  mcs <- optionMaybe $ many1 (alphaNum <||> (char '_'))
+  mcs <- optionMaybe $ many1 (alphaNum <||> char '_')
   return . DynVar $ case mcs of
-    Just cs -> (c:cs)
+    Just cs -> c:cs
     Nothing -> [c]
   -- return $ DynVar (c:cs)
 
@@ -161,6 +172,8 @@ labelParser = do
 
 infixr 1 <||>
 (<||>) :: Parser a -> Parser a -> Parser a
-a <||> b = (try a) <|> b
+a <||> b = try a <|> b
 
-tiParse = parse ((many1 ((many $ oneOf "\n ") *> expr <* (many $ oneOf "\n "))) <* eof) "ti parser"
+
+tiParse :: String -> Either ParseError [Expr]
+tiParse = parse (many1 (many (oneOf "\n ") *> expr <* many (oneOf "\n ")) <* eof) "ti parser"

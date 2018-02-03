@@ -1,0 +1,5 @@
+.DS_Store
+*.8xp
+.stack_work/
+*.hi
+.vscode/
