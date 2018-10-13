@@ -166,7 +166,7 @@ varBindParser = do
   return $ VarBind name v
 
 labelParser :: Parser Expr
-labelParser = do
+labelParser = do -- yay
   name <- string "label" *> spaces *> many1 alphaNum <* char ':'
   return $ Label name
 

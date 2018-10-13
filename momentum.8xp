@@ -1,4 +1,4 @@
-{}→⌊BACK
+SetUpEditor ⌊BACK
 {I,E,A}→⌊BACK
 Lbl C
 ClrHome

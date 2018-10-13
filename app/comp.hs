@@ -142,7 +142,10 @@ isRight (Left _) = False
 
 
 -- so this bit of code is quite clever
--- first it creates a lsit
+-- first it creates the alphabet
+-- then, it turns ["A".."Z"] into 
+-- [("A" ++ ) .. ("Z" ++ )]
+-- and applies it to the list
 basicLabelNames :: [String]
 basicLabelNames = alphabet ++ (map (++) basicLabelNames <*> alphabet)
     where alphabet = map cToS ['A'..'Z']
